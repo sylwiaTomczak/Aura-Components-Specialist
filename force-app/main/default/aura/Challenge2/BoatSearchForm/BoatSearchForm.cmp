@@ -1,3 +1,48 @@
-<aura:component>
+//podpięcie kontrolera- osobnej klasy apexowej?
+<aura:component controller="BoatTypeController" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
 
+//deklaracja atrybutów
+//lista różnych typów łodzi
+    <aura:attribute name="BoatTypes" type="BoatType__c[]"/>
+//wybrana łódź 
+    <aura:attribute name="selectedBoatType" type="BoatType__c" />
+//guzik new 
+    <aura:attribute name="newButton" type="Boolean"/>
+
+//przekazanie fukcji do controllera
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+
+//ustawienie wyglądu 
+    //Lightning:layout- system siatkido rozmieszczanie pojemnikó na stronie lub w innym pojemniku
+    //hotizontalAlight="center"- dołącza do siatki, porządkuje elementy w lini poziomej bez odstępów, grupa w środku kontenera
+    //verticalAlign="end"- wyrównanie elementów do dołu kontenera
+    <Lightning:layout horizontalAlign="center" verticalAlign="end">
+        //element układu przyjmuje rozmiar swojej zawartości 
+        <lightning:layoutItem padding="around-small">
+            //lightning:select-element wyboru, opcji na liście rozwijanej, wybór jeden 
+            //onchange- zdarzenie wyzwalane po wyborze i kliknięciu wartości, obsługa kliknięcia w controllerze
+            <lightning:select aura:id="boatTypes" label="" name="selectType" onchange="{!c.boatTypeChange}">
+                //To co będzie wyświetlanie w liście rozwijanej zanim się kliknie
+                <option value="">All Types</option>
+                    //pobieranie i wyświetlanie wartości z listy, iterowanie po niej
+                    <aura:iteration items="{!v.BoatTypes}" var="boatType">
+                        //pobieranie rzeczy po id i wyświetlenia po nazwie
+                        <option value="{!boatTypes.Id}" text="{!boatType.Name}" />
+                    </aura:iteration>
+            </lightning:select>
+        </lightning:layoutItem>
+
+
+    //element układu przyjmuje rozmiar swojej zawartości 
+        <Lightning:layoutItem padding ="around-small">
+            //guzik, brand- będzie wypełniony kolorem niebieski, wyślwietli się na nim Search
+            <lightning:button variant="brand" label="Search"/>
+             //pozwala na stworzenie jednej gałezi i rednerowanie.
+             <aura:if isTrue="{!v.newButton}">
+                //guzik, neutral-bez wypełnienia, wyślwietli się na nim New, obsługa kliknięcia w controllerze 
+                <lightning:button variant="neutral" label="New" onclick="{!c.createBoat}"/>
+             </aura:if>
+            </Lightning:layoutItem>
+        </Lightning:layout>
 </aura:component>	
