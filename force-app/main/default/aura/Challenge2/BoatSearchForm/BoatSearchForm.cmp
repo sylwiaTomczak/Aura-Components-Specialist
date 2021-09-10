@@ -14,7 +14,7 @@
 
 
 //ustawienie wyglądu 
-    //Lightning:layout- system siatkido rozmieszczanie pojemnikó na stronie lub w innym pojemniku
+    //Lightning:layout- system siatki do rozmieszczanie pojemników na stronie lub w innym pojemniku
     //hotizontalAlight="center"- dołącza do siatki, porządkuje elementy w lini poziomej bez odstępów, grupa w środku kontenera
     //verticalAlign="end"- wyrównanie elementów do dołu kontenera
     <Lightning:layout horizontalAlign="center" verticalAlign="end">
@@ -28,7 +28,7 @@
                     //pobieranie i wyświetlanie wartości z listy, iterowanie po niej
                     <aura:iteration items="{!v.BoatTypes}" var="boatType">
                         //pobieranie rzeczy po id i wyświetlenia po nazwie
-                        <option value="{!boatTypes.Id}" text="{!boatType.Name}" />
+                        <option value="{!boatType.Id}" text="{!boatType.Name}" />
                     </aura:iteration>
             </lightning:select>
         </lightning:layoutItem>
