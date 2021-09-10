@@ -1,3 +1,16 @@
 <aura:component>
+    //podzielenie obszary na 2 części pionowe, 
+    <div class="FindBoat">
+        //nazwa jaka ma się wyświetlać na górze
+        <lightning:card title="Find a Boat">
+            //podpięcie componentu aurowego, który ma się znajdować w divie
+            <c:BoatSearchForm/>
+        </lightning:card>
+    </div>
 
+    //tytuł 
+    <lightning:card title="Matching Boats">
+        //podpięcie componentu aurowego, który ma się znajdować w divie
+        <c:BoatSearchResults aura:id="boatSearchResultsCmp"/>
+    </lightning:card>
 </aura:component>	
