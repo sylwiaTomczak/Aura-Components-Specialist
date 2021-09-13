@@ -1,0 +1,37 @@
+//podpięcie controllera czyli klasy apexowej z searchami listy boatów
+<aura:component controller="BoatSearchResults" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+   
+//atrybuty: lodzi, wybranych lodzi i id lodzi 
+    <aura:attribute type="Boat__c[]" name="boats"/>
+    <aura:attribute type="Boat__c" name="choosenboat"/>
+    <aura:attribute name="boatTypeId" type="String"/>
+
+    //funkcja implementowana w controllerze
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+   //funkcja w controlerze searchująca po idikach lodzi
+    <aura:method name="search" action="{!c.doSearch}">
+        <aura:attribute name="boatTypeId" type="String"/>
+    </aura:method>
+
+    //wiele wierszy w celu wygenerowania układu
+    <lightning:layout multipleRows="true">
+        //warunek jeśli haczyk do zmiennej lodzi jest większy niż zero to 
+        <aura:if isTrue="{!v.boats.length > 0}">
+            //iterowanie po tych lodziach
+            <aura:iteration items="{!v.boats}" var="bot">
+                //wyswietlenie po 4 lodzie w rzędzie bo liczy od 0
+                <lightning:layoutItem  size="3" flexibility="grow" class="slds-m-around_small">
+                    //podłączenie coponentu BoatTile implementowanego wcześniej
+                    <c:BoatTile boat="{!bot}" />
+                </lightning:layoutItem>
+            </aura:iteration>
+            //w przeciwnym razie jeśli lista pusta to komunikat o błedzie 
+            <aura:set attribute="else">
+                <lightning:layoutItem class="slds-align_absolute-center" flexibility="auto" padding="around-small">
+                    <ui:outputText value="No boats found" />
+                </lightning:layoutItem>
+            </aura:set>
+        </aura:if>
+    </lightning:layout>
+</aura:component>
