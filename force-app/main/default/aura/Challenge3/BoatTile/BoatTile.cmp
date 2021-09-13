@@ -1,9 +1,18 @@
-<aura:component>
-    <lightning:button 'more code here' >
-        <div style= 'set image as background here' class="innertile">
-          <div class="lower-third">
-           <h1 class="slds-truncate">[output contact name here]</h1>
-          </div>
+<aura:componentimplements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    // atrybut boat, który jest tablicą boatów
+    <aura:attribute name="boat" type="Boat__c[]"/>
+    //funckja przekazama do controllera
+    <aura:handler name = "init" value="{!this}" action="{!c.doInit}"/>
+
+    //Grupa powiązanych informacji skojarzonych z rekordem. 
+    <lightning:button clas="tile">
+        //dodanie zdjęcia po odwołaniu się do view hold by boat.Picture__c, v.- jest dostawcą wartości
+        <div style ="{!'background-image: url(\'' + v.boat.Picture__c + '\')'}" class="innertile">
+            //div nowy pojemnik
+            <div class="lower-third">
+                //nagłówek z opcją obcięcia jednego wiersza i v. dostawca jako haczyk do name boata
+           <h1 class="slds-truncate">{!.v.boat.Name</h1>
+           </div>
         </div>
-        </lightning:button>       
+    </lightning:button>
 </aura:component>	
