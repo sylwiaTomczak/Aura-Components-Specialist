@@ -1,4 +1,8 @@
 <aura:component>
+
+    //podpięcie eventu i przekazanie akcji do controllera
+    <aura:handler name="formsubmit" event="c:Formsubmit" action="{!c.onFormSubmit}"/>
+
     //podzielenie obszary na 2 części pionowe, 
     <div class="FindBoat">
         //nazwa jaka ma się wyświetlać na górze

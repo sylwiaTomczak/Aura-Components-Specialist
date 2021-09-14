@@ -1,7 +1,7 @@
 ({
     //implementowanie akcji z BoatSearchForm z- {!c.}
     doInit:function(component, event, helper) {
-        //odwołanie się do metody helpera
+        //odwołanie się do metody helpera, wybranie typu łodzi
         helper.LoadBoatTypes(component, event);
         //przypisanie do zmiennej wybranej opcji z BoatSearchForm lub helpera 
         var seb = component.get("v.selectedBoatType");
@@ -35,5 +35,25 @@
         //log w konsoli z id boata i wywołanie akcji
         console.log("boatTypeId" + boatTypeId);
         createRecordFire.fire();
+    },
+
+    onFormSumbit : function(component, event) {
+        //zmienna przechowująca id łodzi przypisanej za pomocą:
+        //find, któy zwróci komponent lub tablicę komponentówlub jeśli nic to undefined
+        //get- zwróci wartośc atrybutu w nawiasie 
+        var boatTypeId = component.find("boatTypes").get("v.value");
+        //iterowanie po wyniku
+        var data = {
+            "boatTypeId" : boatTypeId
+        };
+       
+        //pobranie i przypisanie eventu do zmiennej tymczasowej 
+        var formsubmit = component.getEvent("formsubmit");
+        //ustawiamie parametrów zdarzenia i odpalenie eventu
+        formsubmit.setParams({
+            "formData" :data
+        });
+       
+        formsubmit.fire();
     },
 })

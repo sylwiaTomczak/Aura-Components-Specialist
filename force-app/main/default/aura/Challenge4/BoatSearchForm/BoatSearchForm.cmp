@@ -12,6 +12,9 @@
 //przekazanie fukcji do controllera
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
+    //podpięcie eventu żeby umożliwić przekazanie wybranej łodzi
+    <aura:registerEvent name="formsubmit" type="c:Formsubmit"/>
+
 
 //ustawienie wyglądu 
     //Lightning:layout- system siatki do rozmieszczanie pojemników na stronie lub w innym pojemniku
@@ -36,8 +39,9 @@
 
     //element układu przyjmuje rozmiar swojej zawartości 
         <Lightning:layoutItem padding ="around-small">
-            //guzik, brand- będzie wypełniony kolorem niebieski, wyślwietli się na nim Search
-            <lightning:button variant="brand" label="Search"/>
+            //guzik, brand- będzie wypełniony kolorem niebieskim, wyślwietli się na nim Search i
+            //wywoła się akcja przekazana do controlera onFormSubmit
+            <lightning:button variant="brand" label="Search" onclick="{!c.onFormSubmit}"/>
              //pozwala na stworzenie jednej gałezi i rednerowanie.
              <aura:if isTrue="{!v.newButton}">
                 //guzik, neutral-bez wypełnienia, wyślwietli się na nim New, obsługa kliknięcia w controllerze 
