@@ -10,4 +10,11 @@
         component.set("v.boatTypeId", params.boatTypeId);
                    helper.onSearch(component);
     },
+
+    onBoatSelect : function(component, event, helper){
+        //pobranie parametru do zmiennej
+        var event = event.getParam("boatId");
+        //przypisanie do componentu id wybranej lodzi i wywolanie eventu 
+        component.set("v.selectedBoatId", event);
+    },
 })

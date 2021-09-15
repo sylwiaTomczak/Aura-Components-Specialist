@@ -5,6 +5,10 @@
     <aura:attribute type="Boat__c[]" name="boats"/>
     <aura:attribute type="Boat__c" name="choosenboat"/>
     <aura:attribute name="boatTypeId" type="String"/>
+    //atrybut selectedBoatID jako String
+    <aura:attribute name="selectedBoatId" type="String"/>
+    //podpięcie eventu i przekazanie akcji do kontrolera
+    <aura:handler name="BoatSelect" event="c:BoatSelect" action="{!c.onBoatSelect}"/>
 
     //funkcja implementowana w controllerze
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
@@ -19,11 +23,14 @@
         //warunek jeśli haczyk do zmiennej lodzi jest większy niż zero to 
         <aura:if isTrue="{!v.boats.length > 0}">
             //iterowanie po tych lodziach
-            <aura:iteration items="{!v.boats}" var="bot">
+            <aura:iteration items="{!v.boats}" var="boat">
                 //wyswietlenie po 4 lodzie w rzędzie bo liczy od 0
                 <lightning:layoutItem  size="3" flexibility="grow" class="slds-m-around_small">
-                    //podłączenie coponentu BoatTile implementowanego wcześniej
-                    <c:BoatTile boat="{!bot}" />
+                    //podłączenie componentu BoatTile implementowanego wcześniej, 
+                    //pobranie boat id i porównanie go z wybranym przez uzytkownika boatem i sprawdzenie czy true czy false 
+                   //zwraca boolean a nie string 
+                    <c:BoatTile boat="{!boat}" selected="{!boat.Id == v.selectedBoatId ? true : false}"/>
+
                 </lightning:layoutItem>
             </aura:iteration>
             //w przeciwnym razie jeśli lista pusta to komunikat o błedzie 

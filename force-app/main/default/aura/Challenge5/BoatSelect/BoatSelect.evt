@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Event template">
+    //wysłanie boatID do BoatSearchResult i boatTile
+<aura:attribute name="boatId" type="Id"/>
+</aura:event>

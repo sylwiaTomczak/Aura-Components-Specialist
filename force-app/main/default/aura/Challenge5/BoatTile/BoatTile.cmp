@@ -1,17 +1,28 @@
 <aura:componentimplements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
     // atrybut boat, który jest tablicą boatów
     <aura:attribute name="boat" type="Boat__c[]"/>
+
+    //dodanie atrubutu selected ustawionego domyślnie na false
+    <aura:attribute name="selected" type="Boolean" default="false"/>
+
     //funckja przekazama do controllera
     <aura:handler name = "init" value="{!this}" action="{!c.doInit}"/>
 
+    //dodanie stworonego eventu BoatSelect i podpięcie go
+    <aura:registerEvent name="BoatSelect" type="c:BoatSelect"/>
+
     //Grupa powiązanych informacji skojarzonych z rekordem. 
-    <lightning:button clas="tile">
+    //v. dostawca jako haczyk do atrybutu selected sprawdza czy zmienił swoją właściwośc z false na wybrany
+    //podpięcie zdarzenia kliknięcia guzika do controllera i 
+    //haczyk v. do id boata który został kliknięty. 
+    <lightning:button class="{!v.selected ? 'tile selected' : 'tile'}" onclick="{!c.onBoatClick}" value="{!v.boat.Id}">
+        
         //dodanie zdjęcia po odwołaniu się do view hold by boat.Picture__c, v.- jest dostawcą wartości
         <div style ="{!'background-image: url(\'' + v.boat.Picture__c + '\')'}" class="innertile">
             //div nowy pojemnik
             <div class="lower-third">
                 //nagłówek z opcją obcięcia jednego wiersza i v. dostawca jako haczyk do name boata
-           <h1 class="slds-truncate">{!.v.boat.Name</h1>
+           <h1 class="slds-truncate">{!.v.boat.Name}</h1>
            </div>
         </div>
     </lightning:button>
