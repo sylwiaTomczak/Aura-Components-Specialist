@@ -18,3 +18,5 @@
         component.set("v.selectedBoatId", event);
     },
 })
+
+//
