@@ -31,6 +31,7 @@
         //reprezentuje listę card i w zależności od wyboru kliknięcia będą się wyświetlać określone informacje 
         <lightning:tabset>
             <lightning:tab label="Details">
+                //!v.boat - wywołanie componentu boatDeatilais z tego atrybutu
                 <c:BoatDetail boat="{!v.boat}"/>          
             </lightning:tab>
             <lightning:tab label="Reviews">
