@@ -1,0 +1,44 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome" access="global" >
+
+    //stworzenie atrybutów lodzi, id i podłaczenie eventu naciśnięcia na wybraną łódź,
+    // przekazanie jej do controllera
+    <aura:attribute name="boat" Type="Boat__c"/>
+    <aura:attribute name="id" Type="Id"/>
+    <aura:handler event="c:BoatSelected" action="{!c.onBoatSelected}"/>
+   
+    //definiowanie parametrów dostępu, modyfikowania lub tworzenia rekordu za pomocą Lightning Data service
+    //pozwala na kotrole wyświetlania danych
+    //ładuje następujące pola z Boat__c obiektu do boat atrybutu
+    //targetFields- wyświetlanie danych rekordu i on jest pośrednikiem
+    <force:recordData aura:id="service" recordId="{!v.id}"
+                      targetFields ="{!v.boat}"
+                      fields="Id,
+                              Name,
+                              Description__c,
+                              Price__c,
+                              Length__c,
+                              Contact__r.Name,
+                              Contact__r.Email,
+                              Contact__r.HomePhone,
+                              BoatType__r.Name,
+                              Picture__c"
+
+                              //zwraca pustą funckje controlera używana później 
+                      recordUpdated="{!c.onRecordUpdated}"/>
+   
+                      //sprawdenie jeśli to prawda, że jest pusta 
+    <aura:if isTrue="{! !empty(v.boat) }">
+        //reprezentuje listę card i w zależności od wyboru kliknięcia będą się wyświetlać określone informacje 
+        <lightning:tabset>
+            <lightning:tab label="Details">
+                <c:BoatDetail boat="{!v.boat}"/>          
+            </lightning:tab>
+            <lightning:tab label="Reviews">
+                Two Content !
+            </lightning:tab>
+            <lightning:tab label="Add Review">
+                Three Content !
+            </lightning:tab>
+        </lightning:tabset>
+    </aura:if>
+</aura:component>
