@@ -8,8 +8,11 @@
     //funckja przekazama do controllera
     <aura:handler name = "init" value="{!this}" action="{!c.doInit}"/>
 
-    //dodanie stworonego eventu BoatSelect i podpięcie go
+    //dodanie stworzonego eventu BoatSelect i podpięcie go
     <aura:registerEvent name="BoatSelect" type="c:BoatSelect"/>
+
+    //dodanie stworzonego eventu BoatSelected i podpięcie go
+    <aura:registerEvent name="BoatSelected" type="c:BoatSelected"/>
 
     //Grupa powiązanych informacji skojarzonych z rekordem. 
     //v. dostawca jako haczyk do atrybutu selected sprawdza czy zmienił swoją właściwośc z false na wybrany

@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="">
+    //podpięciee atrybutu boat wykorzystanego w pozostałych componentach 
+    <aura:attribute name="boat" type="Boat__c"/>
+</aura:event>

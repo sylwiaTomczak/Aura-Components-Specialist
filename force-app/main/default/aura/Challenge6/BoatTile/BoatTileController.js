@@ -20,6 +20,14 @@
          });
          BoatSelect.fire();
 
+
+         //odpalenie eventu BoatSelected
+         //pobranie składnika błyskwaicy z innego skladnika
+         var boatselected = $A.get("e.c:BoatSelected");
+         boatselected.setParams({
+             "boat" : data
+         });
+         boatselected.fire();
     },
 
 })
