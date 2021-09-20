@@ -5,6 +5,11 @@
     <aura:attribute name="boat" Type="Boat__c"/>
     <aura:attribute name="id" Type="Id"/>
     <aura:handler event="c:BoatSelected" action="{!c.onBoatSelected}"/>
+
+    //dodanie atrubutu prywatnego z tbablicą idików
+    <aura:attribute access="private" name="selectedTabID" type="String"/>
+    //odwołanie do eventu  dodawania recezji, podłaczenie akcji do controllera z dotarciem do elementu źródłowego
+    <aura:handler event="c:BoatReviewAdded" name="BoatReviewAdded" action="{!c.onBoatReviewAdded}" phase="capture"/>
    
     //definiowanie parametrów dostępu, modyfikowania lub tworzenia rekordu za pomocą Lightning Data service
     //pozwala na kotrole wyświetlania danych
@@ -29,16 +34,19 @@
                       //sprawdenie jeśli to prawda, że jest pusta 
     <aura:if isTrue="{! !empty(v.boat) }">
         //reprezentuje listę card i w zależności od wyboru kliknięcia będą się wyświetlać określone informacje 
-        <lightning:tabset>
-            <lightning:tab label="Details">
+        //odowłanie się do id tablicy z boatami i haczyk do tej tabilcy
+        <lightning:tabset aura:id="boatTabSet" selectedTabId="{!v.selectedTabId}">
+            //podanie id tablicyz detalami 
+            <lightning:tab label="Details" id="tabDetails">
                 //!v.boat - wywołanie componentu boatDeatilais z tego atrybutu
                 <c:BoatDetail boat="{!v.boat}"/>          
             </lightning:tab>
-            <lightning:tab label="Reviews">
-                Two Content !
-            </lightning:tab>
-            <lightning:tab label="Add Review">
-                Three Content !
+            //tablica z recenzją 
+            <lightning:tab label="Reviews" id="boatreviewtab">
+        </lightning:tab>
+        //podłaczenie stworzonego componentu z add recenzjami lodzi i haczyk do boatów
+            <lightning:tab label="Add Review" id="tabAddReview">
+                <c:AddBoatReview boat="{!v.boat}"/>
             </lightning:tab>
         </lightning:tabset>
     </aura:if>

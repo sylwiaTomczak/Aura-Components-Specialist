@@ -17,5 +17,10 @@
     onRecordUpdated :function(component, event, helper){
         //przeładowanie rekordu
      component.find("service").reloadRecord();  
-    }
+    },
+
+    //przypisanie do componentu haczyka do tablicy wybranych idików, tablice recencji boatów
+    onBoatReviewAdded : function(component, event, helper) {
+        component.set('v.selectedTabId', 'boatreviewtab');
+      },
 })
