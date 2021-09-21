@@ -1,0 +1,66 @@
+<aura:component controller="BoatReviews" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="boat" type="Boat__c"/>
+    <aura:attribute name="boatReviews" type="BoatReview__c[]" access="private"/>
+
+    //funckje w controllerze
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.boat}" action="{!c.doInit}"/>
+    <aura:method name="refresh" action="{!c.doInit}" access="public"/>
+
+    //kontener pozwala na przewijanie, pozwala na zagrznieżdzenie więcej niż jednego scrollera
+    <ui:scrollerWrapper class="slds-feed">
+        <ul class="slds-feed__list">
+            //iterowanie po recenzji boatów
+            <aura:iteration items="{!v.boatReviews}" var="boatReview">
+                //wzięte z neta
+                <li class="slds-feed__item">
+                    <article class="slds-post">
+                        <header class="slds-post__header slds-media">
+                            <div class="slds-media__figure">
+                                <a href="javascript:void(0);" class="slds-avatar slds-avatar_circle">
+                                    //zdjęcie łodzi z danymi
+                                    <img alt="{!boatReview.CreatedBy.Name}"
+                                         src="{!boatReview.CreatedBy.SmallPhotoUrl}"
+                                         title="{!boatReview.CreatedBy.Name}" />
+                                </a>
+                            </div>
+                            <div class="slds-media__body">
+                                <div>
+                                    <p>
+                                        //hiperłącze do daych o autorze recenzji
+                                        <a href="javascript:void(0);"
+                                           title="{!boatReview.CreatedBy.Name}"
+                                           data-userid="{!boatReview.CreatedBy.Id}"
+                                           onclick="{!c.onUserInfoClick}">
+                                            {!boatReview.CreatedBy.Name}
+                                        </a>
+                                        //sprawdzenie ifem czy rekord pusty
+                                        <aura:if isTrue="{!boatReview.CreatedBy.CompanyName}">
+                                            — {!boatReview.CreatedBy.CompanyName}
+                                        </aura:if>
+                                    </p>
+                                    <p>
+                                        //zawarcie danych o czasie utworzenia recenzji
+                                        <lightning:formattedDateTime value="{!boatReview.CreatedDate}" />&nbsp;
+                                        <lightning:formattedDateTime value="{!boatReview.CreatedDate}" hour="numeric" minute="numeric" second="numeric"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </header>
+                        //kolejny panel z imieniem i sekcja comentarzy
+                        <div class="slds-post__content slds-text-longform">
+                            <p>{!boatReview.Name}</p>
+                            <lightning:formattedRichText value="{!boatReview.Comment__c}" />
+                        </div>
+                    </article>
+                </li>
+            </aura:iteration>
+        </ul>
+        //jeśli nie ma żadnych recenzji to info, że nie ma ich na środku
+        <aura:if isTrue="{!v.boatReviews.length==0}">
+            <div class="slds-align_absolute-center">
+                No reviews available
+            </div>
+        </aura:if>
+    </ui:scrollerWrapper>
+</aura:component>

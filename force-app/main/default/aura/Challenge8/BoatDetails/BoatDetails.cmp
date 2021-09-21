@@ -42,10 +42,13 @@
                 <c:BoatDetail boat="{!v.boat}"/>          
             </lightning:tab>
             //tablica z recenzją 
-            <lightning:tab label="Reviews" id="boatreviewtab">
+            <lightning:tab label="Reviews" id="boatReviewTab">
+                //podpięcie, komponentu z recenzjami
+                <c:BoatReviews aura:id="reviews" boat="{!v.boat}"/>
         </lightning:tab>
         //podłaczenie stworzonego componentu z add recenzjami lodzi i haczyk do boatów
             <lightning:tab label="Add Review" id="tabAddReview">
+                //podpięcie, komponentu  dodawaniem recenzji 
                 <c:AddBoatReview boat="{!v.boat}"/>
             </lightning:tab>
         </lightning:tabset>

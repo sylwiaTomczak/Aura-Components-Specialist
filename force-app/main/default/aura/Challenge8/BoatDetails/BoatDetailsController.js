@@ -21,6 +21,11 @@
 
     //przypisanie do componentu haczyka do tablicy wybranych idików, tablice recencji boatów
     onBoatReviewAdded : function(component, event, helper) {
-        component.set('v.selectedTabId', 'boatreviewtab');
+        //odświerzenie po sprawdzeniu czy recenzja jest true 
+        var reviews = component.find("reviews");
+        if(reviews){
+            reviews.refresh();
+        }
+        component.find("tabs").set('v.selectedTabId', 'boatreviewtab');
       },
 })
