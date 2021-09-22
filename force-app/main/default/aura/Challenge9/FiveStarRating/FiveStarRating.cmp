@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    //zainicjowania licznika gwiazdek
+    <aura:attribute name="value" type="Integer" default="0"/>
+    <aura:attribute name="readonly" type="Boolean" default="false"/>
+    
+    //załadowanie zasobów statycznych gwiazdek 
+    <ltng:require scripts="{!$Resource.fivestar + '/rating.js'}" 
+                  styles="{!$Resource.fivestar + '/rating.css'}" 
+                  afterScriptsLoaded="{!c.afterScriptsLoaded}" />
+
+                  //pobranie wartości i funckja do controllera 
+    <aura:handler name="change" value="{!v.value}" action="{!c.onValueChange}"/>
+    //klasa tylko do odczytu ustawiona wcześniej na false 
+    <ul aura:id="ratingarea" class="{! (readonly) ? 'readonly c-rating' : 'c-rating' }"/>
+</aura:component>

@@ -51,6 +51,8 @@
                         <div class="slds-post__content slds-text-longform">
                             <p>{!boatReview.Name}</p>
                             <lightning:formattedRichText value="{!boatReview.Comment__c}" />
+                            //podpięcie componentu do oceniania gwiazdkai 
+                            <c:FiveStarRating value="{!boatReview.Rating__c}" readonly="true"/>
                         </div>
                     </article>
                 </li>

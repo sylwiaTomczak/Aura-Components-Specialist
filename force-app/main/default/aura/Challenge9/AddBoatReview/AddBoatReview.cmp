@@ -26,6 +26,8 @@
         //guzik zapisu z ikonką
         <lightning:input aura:id="title" name="Title" label="Title" value="{!v.boatReview.Name}" required="true"/>
         <lightning:inputRichText aura:id="description" title="description" disabledCategories="FORMAT_FONT" value="{!v.boatReview.Comment__c}"/>
+        //podpięcie componentu z ocenami gwiazdkami
+        <c:FiveStarRating value="{!v.boatReview.Rating__c}" readonly="false"/>
         <lightning:button label="Submit" iconName="utility:save" variant="brand" onclick="{!c.onSave}"/>
     </div>
 

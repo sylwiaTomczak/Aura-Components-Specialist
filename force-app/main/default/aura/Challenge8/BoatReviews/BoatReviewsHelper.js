@@ -1,7 +1,7 @@
 ({
 	onInit : function(component, event, helper) {
         //pobranie i przypisanie lodzi
-        //pobranie i przypisanie z klasy apexowej selecta ppo wszytskich info o lodzi o konkretnym id 
+        //pobranie i przypisanie z klasy apexowej selecta po wszytskich info o lodzi o konkretnym id 
         //przypisaie parametrow id do id lodzi
         //wyswietlenie loga z infomacja o konketnej 
 		var boat = component.get("v.boat");
@@ -9,7 +9,7 @@
         action.setParams({"boatId": boat.Id});
         console.log('BoatReview.Helper.OnInit: boatId -- '+ boat.Id);
         
-        //callback- ywołanie zwrotne, które jest wykonywane po
+        //callback- wywołanie zwrotne, które jest wykonywane po
         // zwraca akcja po stronie serwera
         action.setCallback(this, function(response){
             //pobranie statusu
