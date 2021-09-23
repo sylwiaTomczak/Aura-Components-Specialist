@@ -28,6 +28,16 @@
              "boat" : data
          });
          boatselected.fire();
-    },
 
+         // przypisanie do zmiennej eventu
+         var plotMapMarkerEvent = $A.get("e.c:PlotMapMarker");
+         //ustawienie parametrów do atrubutów napisanych w evencie i odpalanie funkcji
+        plotMapMarkerEvent.setParams({
+            "sObjectId" : selectedBoat.Id,
+            "lat" : selectedBoat.Geolocation__Latitude__s,
+            "long" : selectedBoat.Geolocation__Longitude__s,
+            "label" : selectedBoat.Name
+        });
+        plotMapMarkerEvent.fire();
+    },
 })

@@ -14,6 +14,9 @@
     //dodanie stworzonego eventu BoatSelected i podpięcie go
     <aura:registerEvent name="BoatSelected" type="c:BoatSelected"/>
 
+    //podłączenie eventu
+    <aura:registerEvent name="plotMapMarker" type="c:PlotMapMarker"/>
+
     //Grupa powiązanych informacji skojarzonych z rekordem. 
     //v. dostawca jako haczyk do atrybutu selected sprawdza czy zmienił swoją właściwośc z false na wybrany
     //podpięcie zdarzenia kliknięcia guzika do controllera i 

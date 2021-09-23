@@ -1,0 +1,8 @@
+<aura:event type="APPLICATION" description="">
+
+//dodanie atrubutów z zadania
+    <aura:attribute name="sObjectId" type="String" />
+    <aura:attribute name="lat" type="String" />
+    <aura:attribute name="long" type="String" />
+    <aura:attribute name="label" type="String" />
+</aura:event>

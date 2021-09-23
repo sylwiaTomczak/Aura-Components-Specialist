@@ -1,0 +1,23 @@
+<aura:component  implements="flexipage:availableForAllPageTypes" access="global">
+    Modyfikacja componentu, w atrybutach ustawienie docelowych rozmiarów mapy
+    <aura:attribute name="width"  type="String" default="100%" />
+    <aura:attribute name="height" type="String" default="200px" />
+    <aura:attribute name="location" type="SObject"/>
+    //załadowanie pliku 
+    <aura:attribute name="jsLoaded" type="boolean" default="false"/>
+    <ltng:require styles="/resource/leaflet/leaflet/leaflet.css" 
+    scripts="/resource/leaflet/leaflet/leaflet.js"
+    afterScriptsLoaded="{!c.jsLoaded}" />   
+    <aura:handler event="c:PlotMapMarker" action="{!c.onPlotMapMarker}"/>
+    <div aura:id="map">
+        //ustawienie tytułu i pobranie danych o lodzi żeby umieścić ją na mapie 
+        <lightning:card title="Current Boat Location">
+            <div style="{!'width: ' + v.width + '; height: ' + v.height}">
+                <div 
+                     class="slds-align_absolute-center">
+                    Please make a selection
+                </div>
+            </div>
+        </lightning:card>
+    </div>
+</aura:component>
